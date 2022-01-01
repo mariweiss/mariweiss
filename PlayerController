@@ -1,0 +1,274 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    [Header("Reference")]
+    [SerializeField]
+    public Rigidbody2D rb;  
+    [SerializeField]
+    public SpriteRenderer spriteRenderer;
+    [SerializeField]
+    public Transform[] pointGround; 
+    [SerializeField]
+    public Transform[] pointWall; 
+    [SerializeField]
+    public Animator animator; 
+
+    [Header("Fisica")]
+    [SerializeField]
+    public float speed; 
+    [SerializeField]
+    public float accel ;
+    [SerializeField]
+    public float Airaccel;
+    [SerializeField]
+    public float jumpSpeed; 
+    [SerializeField]
+    public float jump; 
+
+    public float horizontal; 
+    private float vertical; 
+    private float vx; 
+    private float vy;
+    private float acceleration;
+    private float jumpTimer; 
+    private float _tempoDesdeChao; 
+
+    [Header("Jumping")] 
+    public bool isJumping;
+    public float jumpDuration = 0.5f; 
+    public bool groundCheck1; 
+    public bool groundCheck2; 
+    public bool WallLeft; 
+    public bool WallRight; 
+    public float sizeRayCast; 
+
+   void Start()
+   {
+       rb = GetComponent<Rigidbody2D>();
+   }
+
+   void Update()
+   {
+       horizontal = Input.GetAxis("Horizontal"); 
+       vertical = Input.GetAxis("Jump"); 
+       Flip(); 
+       CanJump(); 
+   }
+private void FixedUpdate()
+   {
+       acceleration = accel; 
+       ChangeVelocity(); 
+       AirAcceleration();
+
+       if(OnGroundOrWall() && vertical == 1) //verifica o pulo a cada frame
+       {
+           vy = jump; 
+       }
+       else
+       {
+           vy = rb.velocity.y;
+       }
+
+       Move(); 
+       if(OnWall() && !OnGroundOrWall() && vertical == 1) 
+       {
+           rb.velocity = new Vector2(-GetWallDirection()* speed * 0.6f, rb.velocity.y);
+       }
+       Jump(); 
+       Animations(); 
+   }
+
+   private void Animations()
+   {
+       if(isJumping == false && groundCheck1 == false && groundCheck2 == false)
+       {
+           animator.SetBool("isFalling", true);
+       }
+       else
+       {
+           animator.SetBool("isFalling", false);
+       }
+
+       if(groundCheck1 == true && groundCheck2 == true)
+        {
+            animator.SetBool("onGround", true);
+        }
+        else
+        {
+            animator.SetBool("onGround", false);
+        }
+   }
+   private void Flip()  // vira a sprite do player
+   {
+       if(horizontal > 0f)
+       {
+           spriteRenderer.flipX = false; 
+       }
+       else if (horizontal < 0f)
+       {
+           spriteRenderer.flipX = true;
+       }
+   }
+
+    private void CanJump() //verifica se o player pode pular e aplica a anim se pode
+    {
+         if (OnGround() && !isJumping)
+        {
+            if(vertical > 0f)
+            {
+                isJumping = true; 
+                animator.SetBool("isJumping", true);
+                animator.SetFloat("jumpSpeed", jumpSpeed);
+            }
+        }
+
+        if (vertical >= 1f)
+        {
+            jumpTimer += Time.deltaTime; 
+        }
+        else
+        {
+            isJumping = false;
+            jumpTimer = 0f;
+            animator.SetBool("isJumping", false);
+        }
+
+        if(jumpTimer > jumpDuration)
+        {
+            vertical = 0f; 
+        }
+    }
+   private bool OnGround() //verifica se o player esta no chão
+   {
+        groundCheck1 = Physics2D.Raycast(new Vector2(pointGround[0].position.x, pointGround[0].position.y), Vector2.down, sizeRayCast);
+        groundCheck2 = Physics2D.Raycast(new Vector2(pointGround[1].position.x, pointGround[1].position.y), Vector2.down, sizeRayCast);
+
+        if(groundCheck1 || groundCheck2)
+        {
+            return true;  
+        }
+        else
+        {
+            return false;
+        }
+   }
+   private bool OnWall() //verifica se o player esta em contato com a parede
+   {
+       WallLeft = Physics2D.Raycast(new Vector2(pointWall[0].position.x, pointWall[0].position.y), Vector2.left, sizeRayCast);
+       WallRight = Physics2D.Raycast(new Vector2(pointWall[1].position.x, pointWall[1].position.y),Vector2.right, sizeRayCast);
+
+       if(WallLeft || WallRight)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+   }
+
+   private int GetWallDirection() //se esta em contato com a parede, verifica para que lado está
+   {
+       bool  _WallLeft = Physics2D.Raycast(new Vector2(pointWall[0].position.x, pointWall[0].position.y), Vector2.left, sizeRayCast);
+       bool _WallRight = Physics2D.Raycast(new Vector2(pointWall[1].position.x, pointWall[1].position.y),Vector2.right, sizeRayCast);
+
+       if(_WallLeft)
+       {
+           return -1; 
+       }
+       else if (_WallRight) 
+       {
+           return 1;
+       }
+       else
+       {
+           return 0;
+       }
+   }
+private bool OnGroundOrWall() //verifica se o player esta no chão ou na parede
+{
+    if (OnGround() || OnWall())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+}
+   private void OnDrawGizmos() //desenha o raycast no pe do player
+   {
+       Vector2 groundCheck1 = new Vector2(pointGround[0].position.x, pointGround[0].position.y);
+       Debug.DrawRay(groundCheck1, Vector2.down * sizeRayCast, Color.red);  
+
+       Vector2 groundCheck2 = new Vector2(pointGround[1].position.x, pointGround[1].position.y);
+       Debug.DrawRay(groundCheck2, Vector2.down * sizeRayCast, Color.red);
+   }
+
+   public void Move() //aplica a movimentação do player e a anim
+   {
+       rb.AddForce(new Vector2 ((horizontal * speed)- rb.velocity.x * acceleration, 0));
+       rb.velocity = new Vector2(vx, vy); 
+
+       animator.SetFloat("speed", Mathf.Abs(horizontal)); 
+   }
+
+   public void Jump() //aplica o sistema do pulo
+   {
+       if(isJumping && jumpTimer < jumpDuration)
+       {
+           rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+       }
+   }
+
+   private void AirAcceleration() //aplica a aceleração de quando o player esta no chão ou no ar
+   {
+       acceleration = 0f; 
+       if(OnGround())
+       {
+           acceleration = accel; 
+       }
+       else
+       {
+           acceleration = Airaccel; 
+       }
+   }
+
+   private void ChangeVelocity() //muda a velocidade do player conforme segura o botão de andar
+   {
+       if(horizontal == 0 && OnGround())
+       {
+           vx = 0f; 
+       }
+       else  
+       {
+           vx = rb.velocity.x; 
+       }
+   }
+
+     void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Spikes")
+        {
+            GameController.instance.ShowGameOver();
+            Destroy(gameObject);
+        }
+
+        if(collision.transform.tag == "MovingPlataform")
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "MovingPlataform")
+        {
+            transform.parent = null; 
+        }
+    }
+}
