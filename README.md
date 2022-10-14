@@ -1,3 +1,2 @@
 - 👋 Hi, I’m @mariweiss
-- 👀 I’m interested in games, series and films. 
-- 🌱 I’m currently learning programation(js) and how to make games in Unity :)
+- 🌱 I’m currently learning css, html, js :D
