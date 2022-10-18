@@ -1,2 +1,0 @@
-- 👋 Hi, I’m @mariweiss
-- 🌱 I’m currently learning css, html, js :D
