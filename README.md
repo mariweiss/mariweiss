@@ -1,5 +1,9 @@
 ## Hi there 👋
 
+I'm Mari, a computer engineering student in Brazil
+
+I'm currently learning desktop applications.
+
 <!--
 **mariweiss/mariweiss** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
