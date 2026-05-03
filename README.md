@@ -36,11 +36,7 @@ Computer Engineering Student • IoT • Desktop Apps • Creative Tech
 
 ### 💌 Contact
 
-- LinkedIn: (your link here)
-- Email: (your email)
+- LinkedIn: www.linkedin.com/in/mariana-bissaro-weiss-378a13356
 
 ---
 
-<p align="center">
-  Made with ♡
-</p>
