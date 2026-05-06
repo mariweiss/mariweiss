@@ -11,7 +11,8 @@ Computer Engineering Student • IoT • Desktop Apps • Creative Tech
 - 🎓 Computer Engineering student  
 - 💻 Building desktop apps with Electron  
 - 🔌 Interested in IoT and embedded systems  
-- 🎨 Passionate about aesthetic and functional design  
+- 🎨 Passionate about aesthetic and functional design
+- 📒 Studying quantum computers
 
 ---
 
