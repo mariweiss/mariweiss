@@ -1,4 +1,4 @@
-<h1 align="center">Hi, I'm Mari 👩🏻‍💻</h1>
+<h1 align="center">Hi, I'm Mari </h1>
 
 <p align="center">
 Computer Engineering Student • IoT • Desktop Apps • Creative Tech
