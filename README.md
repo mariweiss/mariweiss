@@ -12,7 +12,7 @@ Computer Engineering Student • IoT • Desktop Apps • Creative Tech
 - 💻 Building desktop apps with Electron  
 - 🔌 Interested in IoT and embedded systems  
 - 🎨 Passionate about aesthetic and functional design
-- 📒 Studying quantum computers
+- ⚛️ Exploring quantum computing fundamentals (Qiskit, VQE, quantum circuits)
 
 ---
 
@@ -31,7 +31,7 @@ Computer Engineering Student • IoT • Desktop Apps • Creative Tech
 
 - 🎮 GameFinder — C++ game catalog system  
 - 👁 Face Detection with Python  
-- 📅 Mari's Calendar — Desktop app with Electron  
+- 📅 Mari's — Desktop app with Electron  
 
 ---
 
