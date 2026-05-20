@@ -6,7 +6,7 @@ Computer Engineering Student • IoT • Desktop Apps • Creative Tech
 
 ---
 
-### 🎵 About Me
+### 📍 About Me
 
 - 🎓 Computer Engineering student  
 - 💻 Building desktop apps with Electron  
