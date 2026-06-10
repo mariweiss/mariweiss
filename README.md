@@ -19,10 +19,13 @@ Computer Engineering Student • IoT • Desktop Apps • Creative Tech
 ### ✨ Technologies
 
 <p>
-  <img src="https://img.shields.io/badge/C++-b48cff?style=flat&logo=cplusplus" />
-  <img src="https://img.shields.io/badge/Python-b48cff?style=flat&logo=python" />
-  <img src="https://img.shields.io/badge/Electron-b48cff?style=flat&logo=electron" />
-  <img src="https://img.shields.io/badge/JavaScript-b48cff?style=flat&logo=javascript" />
+  <img src="https://img.shields.io/badge/C++-b48cff?style=for-the-badge&logo=cplusplus" />
+  <img src="https://img.shields.io/badge/Python-b48cff?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/Electron-b48cff?style=for-the-badge&logo=electron" />
+  <img src="https://img.shields.io/badge/JavaScript-b48cff?style=for-the-badge&logo=javascript" />
+  <img src="https://img.shields.io/badge/React-b48cff?style=for-the-badge&logo=react" />
+  <img src="https://img.shields.io/badge/Next.js-b48cff?style=for-the-badge&logo=nextdotjs" />
+  <img src="https://img.shields.io/badge/TypeScript-b48cff?style=for-the-badge&logo=typescript" />
 </p>
 
 ---
