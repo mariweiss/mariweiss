@@ -12,7 +12,7 @@ Computer Engineering Student • IoT • Desktop Apps • Creative Tech
 - 💻 Building desktop apps with Electron  
 - 🔌 Interested in IoT and embedded systems  
 - 🎨 Passionate about aesthetic and functional design
-- ⚛️ Exploring quantum computing fundamentals (Qiskit, VQE, quantum circuits)
+- ⚛️ Exploring quantum computing fundamentals (Qiskit, VQE, quantum circuits, QRNG)
 
 ---
 
